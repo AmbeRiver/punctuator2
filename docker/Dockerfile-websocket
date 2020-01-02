@@ -1,0 +1,15 @@
+FROM python:3.7-slim
+
+RUN pip install Numpy && \
+    pip install Theano && \
+    pip install nltk && \
+    pip install words2num && \
+    pip install num2words && \
+    pip install websockets
+
+COPY⁨/Users/jinxiaodi/kaldi-websocket-python/punctuator2 /opt
+RUN rm -rf /opt/punctuator2/docker
+
+EXPOSE 2900
+WORKDIR /opt/punctuator2/websockets/
+CMD [ "python3", "./punc_server.py"]
